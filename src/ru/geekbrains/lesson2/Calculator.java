@@ -3,8 +3,11 @@ package ru.geekbrains.lesson2;
 public class Calculator {
 
     public static void arrCheckSizeCondition(String[][] numbers) {
+        if (numbers.length != 4) {
+            throw new MyArraySizeException("Array should be 4x4!");
+        }
         for (int i = 0; i < numbers.length; i++) {
-            if (numbers.length != 4 || numbers[i].length != 4) {
+            if (numbers[i].length != 4) {
                 throw new MyArraySizeException("Array should be 4x4!");
             }
         }
@@ -30,6 +33,7 @@ public class Calculator {
                 numbers[i][j] = String.valueOf((int) (Math.random() * 10));
             }
         }
+        numbers[1][2] = "error";
     }
 
 
@@ -42,7 +46,7 @@ public class Calculator {
                 } catch (NumberFormatException ex) {
                     throw new MyArrayDataException(
                             String.format("Check the value at [%s][%s]. It should be a number."
-                                    , i, j)
+                                    , i, j), ex
                             );
                 }
 
