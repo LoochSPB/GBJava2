@@ -7,6 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Chat extends JFrame {
+
+    private static String clientName;
+
+    public static void setClientName(String clientName) {
+        Chat.clientName = clientName;
+    }
+
     public Chat() {
         setTitle("Chat");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -48,12 +55,12 @@ public class Chat extends JFrame {
     }
 
     private void messageSend(JTextField messageArea, JTextArea chat) {
-        String message = messageArea.getText() + "\n";
+        String message = clientName + ": " + messageArea.getText() + "\n";
         chat.append(message);
         messageArea.setText(null);
     }
 
     public static void main(String[] args) {
-        new Chat();
+    new NameWindow();
     }
 }
