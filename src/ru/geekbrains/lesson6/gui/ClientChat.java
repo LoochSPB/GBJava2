@@ -8,15 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Chat extends JFrame {
+public class ClientChat extends JFrame {
 
     private static String clientName;
 
     public static void setClientName(String clientName) {
-        Chat.clientName = clientName;
+        ClientChat.clientName = clientName;
     }
 
-    public Chat() {
+    public ClientChat() {
         Client client = new Client();
 
         setTitle("Chat");
@@ -42,9 +42,7 @@ public class Chat extends JFrame {
         messageArea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                client.messageSend(messageArea.getText());
-                messageSend(messageArea,chat);
-                chat.append(client.messageReceive() + "\n");
+                messageFlow(client, messageArea, chat);
 
             }
         });
@@ -54,13 +52,17 @@ public class Chat extends JFrame {
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                client.messageSend(messageArea.getText());
-                messageSend(messageArea,chat);
-                chat.append(client.messageReceive() + "\n");
+                messageFlow(client, messageArea, chat);
             }
         });
         messageBox.add(send,BorderLayout.EAST);
         setVisible(true);
+    }
+
+    public void messageFlow(Client client, JTextField messageArea, JTextArea chat) {
+        client.messageSend(messageArea.getText());
+        messageSend(messageArea, chat);
+        chat.append(client.messageReceive() + "\n");
     }
 
     private void messageSend(JTextField messageArea, JTextArea chat) {
@@ -70,6 +72,6 @@ public class Chat extends JFrame {
     }
 
     public static void main(String[] args) {
-    new NameWindow();
+    new ClientNameWindow();
     }
 }

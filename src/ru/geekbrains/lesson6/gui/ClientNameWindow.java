@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NameWindow extends JFrame {
-    public NameWindow() {
+public class ClientNameWindow extends JFrame {
+    public ClientNameWindow() {
         setTitle("Chat enter");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,8 +23,8 @@ public class NameWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new Chat();
-                Chat.setClientName(name.getText());
+                new ClientChat();
+                ClientChat.setClientName(name.getText());
             }
         });
 
@@ -38,8 +38,8 @@ public class NameWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new Chat();
-                Chat.setClientName(name.getText());
+                new ClientChat();
+                ClientChat.setClientName(name.getText());
             }
         });
 

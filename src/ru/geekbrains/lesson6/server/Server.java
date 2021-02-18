@@ -22,11 +22,13 @@ public class Server {
             Socket client = serverSocket.accept();
             in = new DataInputStream(client.getInputStream());
             out = new DataOutputStream(client.getOutputStream());
+            String incomingMessage;
 
             while (true) {
                 try{
-                    System.out.println("Message from client: " + in.readUTF());
-                    out.writeUTF("Server: " + in.readUTF());
+                    incomingMessage = in.readUTF();
+                    out.writeUTF("Server: " + incomingMessage);
+                    System.out.println("Incoming Message is: " + incomingMessage);
                 } catch (EOFException e) {
                     System.out.println("Connection closed");
                     break;
