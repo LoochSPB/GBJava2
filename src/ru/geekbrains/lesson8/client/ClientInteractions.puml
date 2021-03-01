@@ -1,0 +1,10 @@
+@startuml
+
+class ClientNetworking {}
+class ClientChatFrame {}
+class ClientChatAdapter {}
+
+ClientNetworking ..> ClientChatAdapter
+ClientChatAdapter <.. ClientChatFrame
+
+@enduml
