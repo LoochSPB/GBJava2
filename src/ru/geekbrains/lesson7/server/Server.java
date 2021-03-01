@@ -58,6 +58,17 @@ public class Server {
             handler.sendMessage(message);
         }
     }
+    public void privateBroadcast(String receiverName, String message, String senderName) {
+        for (ClientHandler handler : handlers) {
+            if (handler.getName().equals(receiverName)){
+                handler.sendMessage(message);
+            }
+            if (handler.getName().equals(senderName)){
+                handler.sendMessage(message);
+            }
+
+        }
+    }
 
     public void subscribe(ClientHandler handler) {
         handlers.add(handler);

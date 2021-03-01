@@ -48,6 +48,22 @@ public class ClientHandler {
         }
     }
 
+    private void privateMessageSend(String outMessage) {
+        if (outMessage.startsWith("/w")) {
+            String[] privateMessage = outMessage.split(" ");
+            String receiverName = privateMessage[1];
+            StringBuilder messageBuilder = new StringBuilder();
+            for (int i = 2; i < privateMessage.length; i++) {
+                messageBuilder.append(privateMessage[i]);
+            }
+            String senderName = name;
+            String message = name + ": " + messageBuilder.toString();
+            server.privateBroadcast(receiverName, message, senderName);
+
+        }
+
+    }
+
     private void doAuth() throws IOException {
         while (true) {
             /**
@@ -91,6 +107,7 @@ public class ClientHandler {
 
     public void sendMessage(String message) {
         try {
+            privateMessageSend(message);
             out.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();
